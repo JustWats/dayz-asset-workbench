@@ -1,0 +1,14 @@
+{
+  "blender_mcp": {
+    "repository": "https://github.com/ahujasid/blender-mcp",
+    "commit": "5f8ddaf6e987c4aa0c3467fcc548838b28f64477",
+    "url": "https://codeload.github.com/ahujasid/blender-mcp/zip/5f8ddaf6e987c4aa0c3467fcc548838b28f64477",
+    "sha256": "cd45af4e594309b1677d096113508b8a5b79288e6ab157f294e36f5bb81a4e22"
+  },
+  "exporter": {
+    "repository": "https://github.com/MrClock8163/Arma3ObjectBuilder",
+    "version": "2.5.1",
+    "url": "https://github.com/MrClock8163/Arma3ObjectBuilder/releases/download/v2.5.1/Arma3ObjectBuilder_2_5_1.zip",
+    "sha256": "9bf51396006c9788afc8072b9d57bb832057cad18022c6bc426211b420396009"
+  }
+}

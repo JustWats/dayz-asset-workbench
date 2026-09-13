@@ -1,0 +1,23 @@
+{
+  "name": "dayz-asset-workbench",
+  "version": "0.1.0+codex.20260913175339",
+  "description": "Local MCP tools for Blender, DayZ PAA conversion, editable P3D export and native viewers.",
+  "author": {
+    "name": "JustWats"
+  },
+  "repository": "https://github.com/JustWats/dayz-asset-workbench",
+  "license": "MIT",
+  "interface": {
+    "displayName": "DayZ Asset Workbench",
+    "shortDescription": "Blender, P3D and PAA tools over MCP.",
+    "longDescription": "Inspect and edit Blender scenes, convert PAA textures, export editable P3D models and open DayZ native viewers using local MCP tools.",
+    "developerName": "JustWats",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": "Check my DayZ asset toolchain and connect to Blender."
+  },
+  "mcpServers": "./.mcp.json"
+}

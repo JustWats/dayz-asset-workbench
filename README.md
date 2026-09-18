@@ -76,6 +76,8 @@ Conversions and exports create unique `<project>/work/mcp/<job-id>` directories.
 
 `configured_lods` exports authored Arma 3 Object Builder LOD objects and preserves their material/texture paths. Supply `texture_root` as the existing project directory representing the virtual drive root. Author LOD metadata, named selections, memory points, geometry, and materials through the Blender addon/API before using this mode.
 
+Hidden authored objects are made visible only in the background export snapshot. An export fails if requested LOD resolutions are missing from the result; an exporter warning about skipped invalid geometry is not accepted as a successful conversion. Use `tests/lod_regression.py` with a connected Blender project to verify both behaviors with temporary fixtures.
+
 P3D import/inspection supports **editable MLOD**, not binarized ODOL. Native viewer launch reports process launch only; it does not automate Object Builder's menus or verify its render. `ImageToPAA` encoding suffixes do not transform roughness/metallic maps into DayZ material channels. The tools do not generate game-ready item configuration, rigging, engine-specific LOD semantics, RVMATs, or PBO builds automatically. `game_ready` stays false until a separate in-game validation process establishes readiness.
 
 The Blender bridge listens on `127.0.0.1` and enables local code execution. Use a trusted local MCP client. Telemetry is disabled in both the bridge environment and addon preferences; cloud asset-generation tools are excluded from the exposed tool list.

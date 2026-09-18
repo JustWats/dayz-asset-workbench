@@ -47,7 +47,13 @@ else:
     candidates = [o for o in bpy.context.scene.objects if o.type == "MESH" and (not chosen or o.name in chosen)]
     if not candidates:
         raise ValueError("No meshes available for export")
+    # Authored LODs are commonly hidden while editing. Selection-based export must
+    # include them in the isolated snapshot, without changing the live viewport.
+    for obj in candidates:
+        obj.hide_set(False)
+        obj.hide_viewport = False
     texture_outputs = []
+    required_resolutions = []
     if args["mode"] == "visual_color":
         stage = folder / "stage"
         prefix = re.sub(r"[^A-Za-z0-9_]", "_", project.name)
@@ -93,6 +99,10 @@ else:
         if not lods:
             raise ValueError("No authored P3D LOD objects. Assign LOD metadata before configured_lods export")
         for obj in lods:
+            for prop in [obj.a3ob_properties_object, *obj.a3ob_properties_object.copies]:
+                resolution = prop.resolution_float if prop.lod == '-1' else prop.resolution
+                required_resolutions.append(float(a3ob.io.data_p3d.P3D_LOD_Resolution(int(prop.lod), resolution)))
+        for obj in lods:
             obj.select_set(True)
         bpy.context.view_layer.objects.active = lods[0]
         a3ob.get_prefs().project_root = args["texture_root"]
@@ -102,6 +112,10 @@ else:
     if "FINISHED" not in status:
         raise RuntimeError("P3D export failed")
     result = inspect(output)
+    from collections import Counter
+    missing = Counter(required_resolutions) - Counter(lod['resolution'] for lod in result['lods'])
+    if missing:
+        raise RuntimeError(f"Exporter skipped requested LODs after validation: {dict(missing)}. Inspect tool.log; partial output is not accepted.")
     result["textures"] = texture_outputs
     result["mode"] = args["mode"]
     result["game_ready"] = False

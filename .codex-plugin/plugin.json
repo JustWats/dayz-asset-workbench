@@ -1,6 +1,6 @@
 {
   "name": "dayz-asset-workbench",
-  "version": "0.1.0+codex.20260913175339",
+  "version": "0.1.0+codex.20260918200859",
   "description": "Local MCP tools for Blender, DayZ PAA conversion, editable P3D export and native viewers.",
   "author": {
     "name": "JustWats"
